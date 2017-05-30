@@ -1,0 +1,15 @@
+version: '2'
+services:
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=geonetwork
+    container_name: cmems_postgres
+  geonetwork:
+    image: geonetwork:postgres
+    environment:
+      - POSTGRES_DB_USERNAME=postgres
+      - POSTGRES_DB_PASSWORD=geonetwork
+    container_name: cmems_geonetwork
+    ports:
+      - 8080:8080
