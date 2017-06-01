@@ -18,3 +18,8 @@ services:
     container_name: cmems_geonetwork
     ports:
       - 8080:8080
+  activiti:
+    image: eternnoir/activiti:latest
+    container_name: cmems_activiti
+    ports:
+      - 8081:8080
