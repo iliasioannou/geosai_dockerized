@@ -1,5 +1,10 @@
 version: '2'
 services:
+  processors:
+    image: planetek/cmems_processors:develop
+    ports:
+      - 9091:9091
+    container_name: cmems_processors
   postgres:
     image: postgres
     environment:
