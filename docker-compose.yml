@@ -1,15 +1,28 @@
 version: '2'
 services:
+  geoserver:
+    image: kartoza/geoserver
+    container_name: cmems_geoserver
+    ports:
+      - 9090:8080
+    volumes:
+      - ./shared_data/geoserver/data:/root/stores
+      - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
   processors:
     image: planetek/cmems_processors:develop
     ports:
       - 9091:9091
     container_name: cmems_processors
+    volumes:
+      - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
   postgres:
     image: postgres
     environment:
       - POSTGRES_PASSWORD=geonetwork
     container_name: cmems_postgres
+    volumes:
+      - ./shared_data/postgres/dump:/opt/data-volume
+      - ./shared_data/postgres/data:/var/lib/postgresql/data
   geonetwork:
     image: geonetwork:postgres
     environment:
