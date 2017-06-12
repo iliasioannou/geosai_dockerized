@@ -45,6 +45,7 @@ function build_cmems_geonetwork {
   if [ ! -d "../shared_data/postgres/datavolume" ]; then
     mv datavolume ../shared_data/postgres
   fi
+}
 
 function build_cmems_gui {
   printf "${RED}Building cmem_gui${NC}\n"
