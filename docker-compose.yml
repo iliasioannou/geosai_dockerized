@@ -37,8 +37,15 @@ services:
     container_name: cmems_activiti
     ports:
       - 8085:8080
-  cmems_gui:
-    image: planetek/cmems-gui:develop
-    container_name: cmems_gui
+#  cmems_gui:
+#    image: planetek/cmems-gui:develop
+#    container_name: cmems_gui
+#    ports:
+#      - 6060:8080
+  cmems_esb:
+    image: planetek/cmems_esb:develop
+    container_name: cmems_esb
     ports:
-      - 6060:8080
+      - 9190:9190
+    volumes:
+      - ./shared_data:/shared
