@@ -4,6 +4,14 @@ set -e
 RED='\033[0;31m'
 NC='\033[0m'
 
+function build_cmems_esb {
+  printf "${RED}Preparing Mule ESB instance${NC}\n"
+  git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_ESB tmp
+  cd tmp/ESB/docker
+  sh build.sh develop
+  cd ../../..
+  rm -rf tmp
+}
 function build_cmems_geoserver {
   printf "${RED}Preparing geoserver instance${NC}\n"
   git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_MapServices tmp
@@ -33,7 +41,7 @@ function build_cmems_geonetwork {
   cd tmp
   
   if [ ! -d "../shared_data/postgres/datavolume" ]; then
-    mv datavolume ../shared_data/postgres/datavolume
+    mv datavolume ../shared_data/postgres
   fi
 
   if [ ! -d "../shared_data/postgres/data" ]; then
@@ -48,6 +56,7 @@ function build_cmems_geonetwork {
 build_cmems_processors
 build_cmems_geoserver
 build_cmems_geonetwork
+build_cmems_esb
 docker-compose down
 printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres
