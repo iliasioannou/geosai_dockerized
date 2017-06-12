@@ -29,7 +29,7 @@ function build_cmems_geoserver {
 
 function build_cmems_processors {
   printf "${RED}Building cmems_processors${NC}\n"
-  git clone -b develop https://tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Processori tmp
+  git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Processori tmp
   cd tmp/Processors/docker
   sh build.sh develop
   cd ../../..
