@@ -16,6 +16,7 @@ services:
     container_name: cmems_processors
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
+      - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
   postgres:
     image: postgres
     environment:
