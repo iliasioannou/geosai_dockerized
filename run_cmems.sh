@@ -45,10 +45,11 @@ function build_cmems_geonetwork {
   printf "${RED}Preparing geonetwork${NC}\n"
   git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_connettore_catalogo tmp
   cd tmp
-  
   if [ ! -d "../shared_data/postgres/datavolume" ]; then
     mv datavolume ../shared_data/postgres
   fi
+  cd ..
+  rm -rf tmp
 }
 
 function build_cmems_gui {
