@@ -65,9 +65,9 @@ build_cmems_gui
 build_cmems_geoserver
 build_cmems_geonetwork
 build_cmems_esb
-docker-compose down
+#docker-compose down
 printf "${RED}Running compose${NC}\n"
-docker-compose up -d postgres
+#docker-compose up -d postgres
 printf "${RED}Going to sleep${NC}\n"
-sleep 10
-docker-compose up -d
+#sleep 10
+#docker-compose up -d
