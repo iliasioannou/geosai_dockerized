@@ -7,12 +7,16 @@ services:
       - ./shared_data/geoserver/data:/root/stores
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
+    expose:
+      - 9090
   processors:
     image: planetek/cmems_processors:develop
     container_name: cmems_processors
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
       - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
+    expose:
+      - 9190
   postgres:
     image: postgres
     environment:
@@ -27,6 +31,8 @@ services:
       - POSTGRES_DB_USERNAME=postgres
       - POSTGRES_DB_PASSWORD=geonetwork
     container_name: cmems_geonetwork
+    expose:
+      - 9080
   esb:
     image: planetek/cmems_esb:develop
     container_name: cmems_esb
@@ -53,6 +59,8 @@ services:
   activiti:
     container_name: cmems_activiti
     image: planetek/cmems_activiti:develop
+    expose:
+      - 9085
     environment:
       - DB_TYPE=mysql  
       - DB_HOST=cmems_mysql
