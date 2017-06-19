@@ -90,6 +90,6 @@ docker-compose up -d
 sleep 10
 docker exec cmems_activiti bash -c '/src/load.sh'
 docker exec -t -i cmems_geoserver bash -c "sed -i -- 's/port=\"8080\"/port=\"9090\"/g' /usr/local/tomcat/conf/server.xml"
-docker exec -t -i cmems_geonetwork bash -c "sed -i -- 's/port=\"8080\"/port=\"9080\"/g' /usr/local/tomcat/conf/server.xml"
-docker exec -t -i cmems_geonetwork bash -c "sed -i -- 's/port=\"8080\"/port=\"9085\"/g' /usr/local/tomcat/conf/server.xml
+#docker exec -t -i cmems_geonetwork bash -c "sed -i -- 's/port=\"8080\"/port=\"9080\"/g' /usr/local/tomcat/conf/server.xml"
+docker exec -t -i cmems_activiti  bash -c "sed -i -- 's/port=\"8080\"/port=\"9085\"/g' /usr/local/tomcat/conf/server.xml"
 docker-compose restart geoserver geonetwork activiti

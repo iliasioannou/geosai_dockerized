@@ -31,8 +31,6 @@ services:
       - POSTGRES_DB_USERNAME=postgres
       - POSTGRES_DB_PASSWORD=geonetwork
     container_name: cmems_geonetwork
-    expose:
-      - 9080
   esb:
     image: planetek/cmems_esb:develop
     container_name: cmems_esb
