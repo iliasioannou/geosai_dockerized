@@ -3,16 +3,12 @@ services:
   geoserver:
     image: kartoza/geoserver
     container_name: cmems_geoserver
-    ports:
-      - 9090:8080
     volumes:
       - ./shared_data/geoserver/data:/root/stores
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
   processors:
     image: planetek/cmems_processors:develop
-    ports:
-      - 9091:9091
     container_name: cmems_processors
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
@@ -31,24 +27,35 @@ services:
       - POSTGRES_DB_USERNAME=postgres
       - POSTGRES_DB_PASSWORD=geonetwork
     container_name: cmems_geonetwork
-    ports:
-      - 8080:8080
-  activiti:
-    image: eternnoir/activiti:latest
-    container_name: cmems_activiti
-    ports:
-      - 8085:8080
-  cmems_esb:
+  esb:
     image: planetek/cmems_esb:develop
     container_name: cmems_esb
-    ports:
-      - 9190:9190
     volumes:
       - ./shared_data/geoserver/data:/root
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
-  cmems_gui:
+      - ./shared_data/.m2:/root/.m2
+  gui:
     image: planetek/cmems-gui:develop
     container_name: cmems_gui
     ports:
-      - 8081:8080
+      - 80:8080
+  mysql:
+    image: mysql
+    container_name: cmems_mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=cmems
+      - MYSQL_DATABASE=cmems_activiti
+      - MYSQL_USER=activiti
+      - MYSQL_PASSWORD=pkz_029activiti
+    volumes:
+      - ./shared_data/mysql:/var/lib/mysql 
+  activiti:
+    container_name: cmems_activiti
+    image: planetek/cmems_activiti:develop
+    environment:
+      - DB_TYPE=mysql  
+      - DB_HOST=cmems_mysql
+      - DB_NAME=cmems_activiti
+      - DB_USER=activiti 
+      - DB_PASS=pkz_029activiti
