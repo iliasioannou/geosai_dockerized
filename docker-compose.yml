@@ -65,3 +65,9 @@ services:
       - DB_NAME=cmems_activiti
       - DB_USER=activiti 
       - DB_PASS=pkz_029activiti
+  nginx:
+    container_name: cmems_nginx
+    image: kyma/docker-nginx
+    command: nginx
+    volumes: 
+      - ./shared_data/download:/var/www 
