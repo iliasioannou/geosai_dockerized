@@ -13,6 +13,9 @@ function clean {
 
 function build_cmems_esb {
   printf "${RED}Preparing Mule ESB instance${NC}\n"
+  if [ ! -d "shared_data/download" ]; then
+    mkdir shared_data/download
+  fi
   git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_ESB tmp
   cd tmp/ESB/docker
   sh build.sh develop
