@@ -65,7 +65,7 @@ function build_cmems_gui {
 }
 
 function build_cmems_activiti {
-  printf "${RED}Importing data in Activiti db${NC}\n"
+  printf "${RED}Building cmems_activiti${NC}\n"
   git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_WFE  tmp
   cd tmp/docker
   sh build.sh develop 
@@ -91,5 +91,5 @@ sleep 10
 docker exec cmems_activiti bash -c '/src/load.sh'
 docker exec -t -i cmems_geoserver bash -c "sed -i -- 's/port=\"8080\"/port=\"9090\"/g' /usr/local/tomcat/conf/server.xml"
 #docker exec -t -i cmems_geonetwork bash -c "sed -i -- 's/port=\"8080\"/port=\"9080\"/g' /usr/local/tomcat/conf/server.xml"
-docker exec -t -i cmems_activiti  bash -c "sed -i -- 's/port=\"8080\"/port=\"9085\"/g' /usr/local/tomcat/conf/server.xml"
+docker exec -t -i cmems_activiti  bash -c "sed -i -- 's/port=\"8080\"/port=\"9085\"/g' /opt/tomcat/server.xml"
 docker-compose restart geoserver geonetwork activiti
