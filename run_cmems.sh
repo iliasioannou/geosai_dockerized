@@ -86,7 +86,6 @@ build_cmems_activiti
 docker-compose down
 printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql
-build_cmems_activiti
 printf "${RED}Going to sleep${NC}\n"
 sleep 10
 docker-compose up -d
