@@ -16,7 +16,7 @@ services:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
       - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
     expose:
-      - 9190
+      - 9091
   postgres:
     image: postgres
     environment:
@@ -39,6 +39,8 @@ services:
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
       - ./shared_data/.m2:/root/.m2
+    expose:
+      - 9190
   gui:
     image: planetek/cmems-gui:develop
     container_name: cmems_gui
@@ -57,8 +59,8 @@ services:
   activiti:
     container_name: cmems_activiti
     image: planetek/cmems_activiti:develop
-    expose:
-      - 9085
+    ports:
+      - 9085:9085
     environment:
       - DB_TYPE=mysql  
       - DB_HOST=cmems_mysql
