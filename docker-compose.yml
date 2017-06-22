@@ -73,3 +73,9 @@ services:
     command: nginx
     volumes: 
       - ./shared_data/download:/var/www/download
+
+
+networks:
+  default:
+    external:
+      name: cmems
