@@ -72,4 +72,4 @@ services:
     image: kyma/docker-nginx
     command: nginx
     volumes: 
-      - ./shared_data/download:/var/www 
+      - ./shared_data/download:/var/www/download
