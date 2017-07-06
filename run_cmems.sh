@@ -76,6 +76,15 @@ function build_cmems_activiti {
   rm -rf tmp
 }
 
+function build_cmems_manager {
+  printf "${RED}Building cmems_manager${NC}\n"
+  git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Manager_OD_Request  tmp
+  cd tmp/docker
+  sh build.sh develop 
+  cd ../..
+  rm -rf tmp
+}
+
 clean
 build_cmems_processors
 build_cmems_gui
@@ -83,6 +92,7 @@ build_cmems_geoserver
 build_cmems_geonetwork
 build_cmems_esb
 build_cmems_activiti
+build_cmems_mamager
 docker-compose down
 printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql
