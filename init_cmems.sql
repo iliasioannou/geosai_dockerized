@@ -32,13 +32,13 @@ ALTER TABLE ONLY "rolesPrivileges"
     ADD CONSTRAINT idprivilege_idrole UNIQUE ("idPrivilege", "idRole");
 
 ALTER TABLE ONLY "rolesPrivileges"
-    ADD CONSTRAINT privileges_rolesprivilages_fk FOREIGN KEY ("idPrivilege") REFERENCES privileges(idPrivilege);
+    ADD CONSTRAINT privileges_rolesprivilages_fk FOREIGN KEY ("idPrivilege") REFERENCES privileges("idPrivilege");
 
 ALTER TABLE ONLY "rolesPrivileges"
-    ADD CONSTRAINT roles_rolesprivileges_fk FOREIGN KEY ("idRole") REFERENCES roles(idRole);
+    ADD CONSTRAINT roles_rolesprivileges_fk FOREIGN KEY ("idRole") REFERENCES roles("idRole");
 
 ALTER TABLE ONLY users
-    ADD CONSTRAINT roles_users_fk FOREIGN KEY ("idRole") REFERENCES roles(idRole);
+    ADD CONSTRAINT roles_users_fk FOREIGN KEY ("idRole") REFERENCES roles("idRole");
 
 INSERT INTO privileges VALUES (4, 'mng-user', 'manage users1');
 INSERT INTO privileges VALUES (6, 'ondemand', 'on demand processings');
