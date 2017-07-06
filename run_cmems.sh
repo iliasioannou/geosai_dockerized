@@ -92,7 +92,7 @@ build_cmems_geoserver
 build_cmems_geonetwork
 build_cmems_esb
 build_cmems_activiti
-build_cmems_mamager
+build_cmems_manager
 docker-compose down
 printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql
