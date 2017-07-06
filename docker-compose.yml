@@ -76,8 +76,8 @@ services:
   manager_od:
     container_name: cmems_manager_od
     image: planetek/cmems_manager_od:develop
-    ports:
-      - 9999:8080
+    expose:
+      - 8080
     volumes:
       - ./shared_data:/shared
   mysql_manager:
