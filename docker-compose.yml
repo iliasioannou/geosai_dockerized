@@ -90,6 +90,19 @@ services:
       - MYSQL_USER=cmems
       - MYSQL_PASSWORD=cmems
       - MYSQL_ROOT_PASSWORD=cmems
+  postgres-cmems:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=cmems
+      - POSTGRES_PASSWORD=cmems
+      - POSTGRES_DB=CMEMS_DB
+    container_name: cmems_db_api
+    volumes:
+      - ./init_cmems.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./shared_data/postgres-cmems/data:/var/lib/postgresql/data
+  api:
+    image: planetek/cmems_api:develop
+    container_name: cmems_api
 
 networks:
   default:
