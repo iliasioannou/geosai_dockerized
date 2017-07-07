@@ -16,7 +16,7 @@ function build_cmems_esb {
   if [ ! -d "shared_data/download" ]; then
     mkdir shared_data/download
   fi
-  git clone -b develop https://teamEreticoTfs:hI#EMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_ESB tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_ESB tmp
   cd tmp/ESB/docker
   sh build.sh develop
   cd ../../..
@@ -25,7 +25,7 @@ function build_cmems_esb {
 
 function build_cmems_geoserver {
   printf "${RED}Preparing geoserver instance${NC}\n"
-  git clone -b develop https://teamEreticoTfs:hI#EMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_MapServices tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_MapServices tmp
   cd tmp
   
   if [ ! -d "../shared_data/geoserver" ]; then
@@ -39,7 +39,7 @@ function build_cmems_geoserver {
 
 function build_cmems_processors {
   printf "${RED}Building cmems_processors${NC}\n"
-  git clone -b develop https://teamEreticoTfs:hI#EMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Processori tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Processori tmp
   cd tmp/Processors/docker
   sh build.sh develop
   cd ../../..
@@ -49,7 +49,7 @@ function build_cmems_processors {
 
 function build_cmems_geonetwork {
   printf "${RED}Preparing geonetwork${NC}\n"
-  git clone -b develop https://teamEreticoTfs:hI#EMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_connettore_catalogo tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_connettore_catalogo tmp
   cd tmp
   if [ ! -d "../shared_data/postgres/datavolume" ]; then
     mv datavolume ../shared_data/postgres
@@ -60,7 +60,7 @@ function build_cmems_geonetwork {
 
 function build_cmems_gui {
   printf "${RED}Building cmem_gui${NC}\n"
-  git clone -b develop https://teamEreticoTfs:hI#EMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Web_App tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Web_App tmp
   cd tmp/cmems-gui/docker
   sh deploy.sh develop
   cd ../../..
@@ -69,7 +69,7 @@ function build_cmems_gui {
 
 function build_cmems_activiti {
   printf "${RED}Building cmems_activiti${NC}\n"
-  git clone -b develop https://teamEreticoTfs:hI#EMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_WFE  tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_WFE  tmp
   cd tmp/docker
   sh build.sh develop 
   cd ../..
@@ -78,7 +78,7 @@ function build_cmems_activiti {
 
 function build_cmems_manager {
   printf "${RED}Building cmems_manager${NC}\n"
-  git clone -b develop https://teamEreticoTfs:hI#EMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Manager_OD_Request  tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Manager_OD_Request  tmp
   cd tmp/docker
   sh build.sh develop 
   cd ../..
