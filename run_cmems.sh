@@ -87,7 +87,7 @@ function build_cmems_manager {
 
 function build_cmems_api {
   printf "${RED}Building cmems_api${NC}\n"
-  git clone -b develop https://teamEreticoTfs:vAsK*AIJFB@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Api_Rest  tmp
+  git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Api_Rest  tmp
   cd tmp/docker
   sh deploy.sh develop 
   cd ../..
