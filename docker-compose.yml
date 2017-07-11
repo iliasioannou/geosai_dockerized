@@ -4,7 +4,6 @@ services:
     image: kartoza/geoserver
     container_name: cmems_geoserver
     volumes:
-      - ./shared_data/geoserver/data:/root/stores
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
     expose:
