@@ -120,6 +120,13 @@ services:
       - MYSQL_PASSWORD=SFzDmSz43aU0xhJ
       - MYSQL_ROOT_PASSWORD=lubHiOgCnFsRCT7
       - MYSQL_DATABASE=wordpress
+  portainer:
+    container_name: cmems_portainer
+    image: portainer/portainer
+    volumes:
+      -  /var/run/docker.sock:/var/run/docker.sock
+    ports:
+      -  9542:9000
 networks:
   default:
     external:
