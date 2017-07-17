@@ -14,8 +14,8 @@ services:
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
       - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
-    ports:
-      - 9091:9091
+    expose:
+      - 9091
   postgres:
     image: postgres
     environment:
@@ -45,9 +45,9 @@ services:
     container_name: cmems_gui
     ports:
       - 80:8080
-  mysql:
+  mysql_activiti:
     image: mysql
-    container_name: cmems_mysql
+    container_name: cmems_mysql_activiti
     environment:
       - MYSQL_ROOT_PASSWORD=cmems
       - MYSQL_DATABASE=cmems_activiti
@@ -62,7 +62,7 @@ services:
       - 9085:9085
     environment:
       - DB_TYPE=mysql  
-      - DB_HOST=cmems_mysql
+      - DB_HOST=cmems_mysql_activiti
       - DB_NAME=cmems_activiti
       - DB_USER=activiti 
       - DB_PASS=pkz_029activiti
@@ -102,7 +102,24 @@ services:
   api:
     image: planetek/cmems_api:develop
     container_name: cmems_api
-
+  wordpress:
+    container_name: cmems_wordpress
+    image: wordpress
+    ports:
+      - 9999:80
+    environment:
+      - WORDPRESS_DB_PASSWORD=SFzDmSz43aU0xhJ
+      - WORDPRESS_DB_USER=cmems
+    volumes:
+      - ./shared_data/wordpress_data:/var/www/
+  mysql:
+    container_name: cmems_wordpress_mysql
+    image: mariadb
+    environment:
+      - MYSQL_USER=cmems
+      - MYSQL_PASSWORD=SFzDmSz43aU0xhJ
+      - MYSQL_ROOT_PASSWORD=lubHiOgCnFsRCT7
+      - MYSQL_DATABASE=wordpress
 networks:
   default:
     external:
