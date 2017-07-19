@@ -94,6 +94,13 @@ function build_cmems_api {
   rm -rf tmp
 }
 
+function build_proxy {
+  printf "${RED}Building cmems_proxy${NC}\n"
+  cd proxy
+  docker build -t planetek/cmems_proxy:base .
+  cd ..
+}
+
 clean
 build_cmems_processors
 build_cmems_gui
@@ -103,6 +110,7 @@ build_cmems_esb
 build_cmems_activiti
 build_cmems_manager
 build_cmems_api
+build_proxy
 docker-compose down
 printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql_activiti mysql_manager mysql
@@ -112,6 +120,5 @@ docker-compose up -d
 sleep 10
 docker exec cmems_activiti bash -c '/src/load.sh'
 docker exec -t -i cmems_geoserver bash -c "sed -i -- 's/port=\"8080\"/port=\"9090\"/g' /usr/local/tomcat/conf/server.xml"
-#docker exec -t -i cmems_geonetwork bash -c "sed -i -- 's/port=\"8080\"/port=\"9080\"/g' /usr/local/tomcat/conf/server.xml"
 docker exec -t -i cmems_activiti  bash -c "sed -i -- 's/port=\"8080\"/port=\"9085\"/g' /opt/tomcat/conf/server.xml"
 docker-compose restart geoserver geonetwork activiti
