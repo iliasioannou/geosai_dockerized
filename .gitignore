@@ -1,2 +1,3 @@
 tmp
 shared_data/*
+!shared_data/legenda
