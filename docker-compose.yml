@@ -132,7 +132,7 @@ services:
   proxy:
     ports:
       - 80:80
-    image: planetek/cmems_proxy
+    image: planetek/cmems_proxy:base
     container_name: cmems_proxy
   backup:
     image: aveltens/wordpress-backup
