@@ -120,6 +120,8 @@ services:
       - MYSQL_PASSWORD=SFzDmSz43aU0xhJ
       - MYSQL_ROOT_PASSWORD=lubHiOgCnFsRCT7
       - MYSQL_DATABASE=wordpress
+    volumes:
+      - ./shared_data/mysql-wordpress:/var/lib/mysql
   portainer:
     container_name: cmems_portainer
     image: portainer/portainer
@@ -127,6 +129,28 @@ services:
       -  /var/run/docker.sock:/var/run/docker.sock
     ports:
       -  9542:9000
+  proxy:
+    ports
+      - 80:80
+    volumes:
+      - ./shared_data/nginx/nginx.conf:/etc/nginx/nginx.conf
+    image: planetek/cmems_proxy
+    container_name: cmems_proxy
+  backup:
+    image: aveltens/wordpress-backup
+    restart: always
+    volumes:
+      - ./shared_data/backups:/backups
+    volumes_from:
+      - wordpress
+    depends_on:
+      - mysql
+    environment:
+      - MYSQL_ENV_MYSQL_DATABASE=wordpress
+      - MYSQL_ENV_MYSQL_USER=cmems
+      - MYSQL_ENV_MYSQL_PASSWORD=SFzDmSz43aU0xhJ
+      - MYSQL_PORT_3306_TCP_PORT=3306
+     container_name: cmems_wordpress_backup
 networks:
   default:
     external:
