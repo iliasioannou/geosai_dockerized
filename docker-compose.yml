@@ -103,8 +103,8 @@ services:
   wordpress:
     container_name: cmems_wordpress
     image: wordpress
-    ports:
-      - 9999:80
+    expose:
+      - 80
     environment:
       - WORDPRESS_DB_PASSWORD=SFzDmSz43aU0xhJ
       - WORDPRESS_DB_USER=cmems
