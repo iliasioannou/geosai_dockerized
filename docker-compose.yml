@@ -43,8 +43,6 @@ services:
   gui:
     image: planetek/cmems-gui:develop
     container_name: cmems_gui
-    ports:
-      - 80:8080
   mysql_activiti:
     image: mysql
     container_name: cmems_mysql_activiti
