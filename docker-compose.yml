@@ -56,8 +56,8 @@ services:
   activiti:
     container_name: cmems_activiti
     image: planetek/cmems_activiti:develop
-    ports:
-      - 9085:9085
+    expose:
+      - 9085
     environment:
       - DB_TYPE=mysql  
       - DB_HOST=cmems_mysql_activiti
@@ -125,8 +125,8 @@ services:
     image: portainer/portainer
     volumes:
       -  /var/run/docker.sock:/var/run/docker.sock
-    ports:
-      -  9542:9000
+    expose:
+      -  9000
   proxy:
     ports:
       - 80:80
