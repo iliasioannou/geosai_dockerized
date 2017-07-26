@@ -31,5 +31,5 @@ Please check the *nginx.conf* file to check how reverse proxy works and what rou
 
 ## About network
 
-For every connetion between geonetwork and postgres it's needed to create always a Docker network.
+For every connection between geonetwork and postgres it's needed to create always a Docker network.
 
