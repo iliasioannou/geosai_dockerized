@@ -27,7 +27,7 @@ function build_cmems_geoserver {
   printf "${RED}Preparing geoserver instance${NC}\n"
   git clone -b develop https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_MapServices tmp
   mkdir config
-  cp tmp/config/users.xml /config
+  cp tmp/config/users.xml config
   cd tmp
   if [ ! -d "../shared_data/geoserver" ]; then
     mkdir ../shared_data/geoserver
@@ -36,7 +36,7 @@ function build_cmems_geoserver {
 
   cd ..
   rm -rf tmp
-  cp -rf config/users.xml /shared_data/geoserver/geoserver_data_dir/security/usergroup/default/
+  cp config/users.xml shared_data/geoserver/geoserver_data_dir/security/usergroup/default/users.xml
   rm -rf config
 }
 
