@@ -104,15 +104,15 @@ function build_proxy {
   cd ..
 }
 
-#clean
-#build_cmems_processors
-#build_cmems_gui
-#build_cmems_geoserver
-#build_cmems_geonetwork
-#build_cmems_esb
-#build_cmems_activiti
-#build_cmems_manager
-#build_cmems_api
+clean
+build_cmems_processors
+build_cmems_gui
+build_cmems_geoserver
+build_cmems_geonetwork
+build_cmems_esb
+build_cmems_activiti
+build_cmems_manager
+build_cmems_api
 build_proxy
 docker-compose down
 printf "${RED}Running compose${NC}\n"
