@@ -119,6 +119,7 @@ printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql_activiti mysql_manager mysql
 printf "${RED}Going to sleep${NC}\n"
 sleep 10
+docker exec -it cmems_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
 docker-compose up -d
 sleep 10
 docker exec cmems_activiti bash -c '/src/load.sh'
