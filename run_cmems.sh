@@ -104,21 +104,22 @@ function build_proxy {
   cd ..
 }
 
-clean
-build_cmems_processors
-build_cmems_gui
-build_cmems_geoserver
-build_cmems_geonetwork
-build_cmems_esb
-build_cmems_activiti
-build_cmems_manager
-build_cmems_api
+#clean
+#build_cmems_processors
+#build_cmems_gui
+#build_cmems_geoserver
+#build_cmems_geonetwork
+#build_cmems_esb
+#build_cmems_activiti
+#build_cmems_manager
+#build_cmems_api
 build_proxy
 docker-compose down
 printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql_activiti mysql_manager mysql
 printf "${RED}Going to sleep${NC}\n"
 sleep 10
+docker exec -it cmems_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
 docker-compose up -d
 sleep 10
 docker exec cmems_activiti bash -c '/src/load.sh'
