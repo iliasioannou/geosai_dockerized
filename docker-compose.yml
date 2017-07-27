@@ -22,7 +22,7 @@ services:
       - POSTGRES_PASSWORD=geonetwork
     container_name: cmems_postgres
     volumes:
-      - ./shared_data/postgres/dump:/opt/data-volume
+      - ./shared_data/postgres/datavolume:/opt/data-volume
       - ./shared_data/postgres/data:/var/lib/postgresql/data
   geonetwork:
     image: geonetwork:postgres

@@ -28,3 +28,8 @@ where
 
 User exposed service have been proxied via configured Nginx instance. 
 Please check the *nginx.conf* file to check how reverse proxy works and what routes have been covered.
+
+## About network
+
+For every connection between geonetwork and postgres it's needed to create always a Docker network.
+
