@@ -9,7 +9,7 @@ services:
     expose:
       - 9090
   processors:
-    image: planetek/cmems_processors:develop
+    image: planetek/cmems_processors:master
     container_name: cmems_processors
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
@@ -31,7 +31,7 @@ services:
       - POSTGRES_DB_PASSWORD=geonetwork
     container_name: cmems_geonetwork
   esb:
-    image: planetek/cmems_esb:develop
+    image: planetek/cmems_esb:master
     container_name: cmems_esb
     volumes:
       - ./shared_data/geoserver/data:/root
@@ -41,7 +41,7 @@ services:
     expose:
       - 9190
   gui:
-    image: planetek/cmems-gui:develop
+    image: planetek/cmems-gui:master
     container_name: cmems_gui
   mysql_activiti:
     image: mysql
@@ -55,7 +55,7 @@ services:
       - ./shared_data/mysql:/var/lib/mysql 
   activiti:
     container_name: cmems_activiti
-    image: planetek/cmems_activiti:develop
+    image: planetek/cmems_activiti:master
     expose:
       - 9085
     environment:
@@ -66,7 +66,7 @@ services:
       - DB_PASS=pkz_029activiti
   manager_od:
     container_name: cmems_manager_od
-    image: planetek/cmems_manager_od:develop
+    image: planetek/cmems_manager_od:master
     expose:
       - 8080
     volumes:
@@ -92,7 +92,7 @@ services:
       - ./init_cmems.sql:/docker-entrypoint-initdb.d/init.sql
       - ./shared_data/postgres-cmems/data:/var/lib/postgresql/data
   api:
-    image: planetek/cmems_api:develop
+    image: planetek/cmems_api:master
     container_name: cmems_api
   wordpress:
     container_name: cmems_wordpress
