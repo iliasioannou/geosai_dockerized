@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 services:
   geoserver:
     image: kartoza/geoserver
@@ -103,11 +103,11 @@ services:
       - WORDPRESS_DB_PASSWORD=SFzDmSz43aU0xhJ
       - WORDPRESS_DB_USER=cmems
     volumes:
-      - /home/dockermanager/pkz029_UU_CMEMS_dockerized/shared_data/wordpress_data:/var/www/html
+      - wordpress_data:/var/www/html
   sftp:
     image: atmoz/sftp
     volumes:
-      - ./shared_data/wordpress_data:/home/cmems/data:rw
+      - wordpress_data:/home/cmems/data:rw
     ports:
       - "5427:22"
     container_name: cmems_sftp
@@ -142,8 +142,7 @@ services:
     restart: always
     volumes:
       - ./shared_data/backups:/backups
-    volumes_from:
-      - wordpress
+      - wordpress_data:/var/www/html
     depends_on:
       - mysql
     environment:
@@ -156,3 +155,5 @@ networks:
   default:
     external:
       name: cmems
+volumes:
+  wordpress_data:
