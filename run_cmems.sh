@@ -99,8 +99,8 @@ function build_cmems_api {
 
 function build_proxy {
   printf "${RED}Building cmems_proxy${NC}\n"
-  cd proxy
   ls
+  cd proxy
   docker build -t planetek/cmems_proxy:base .
   cd ..
 }
