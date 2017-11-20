@@ -93,7 +93,7 @@ function build_cmems_api {
   git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/SBU-GS/pkz029_UU_CMEMS/_git/pkz029_UU_CMEMS_Api_Rest  tmp
   cd tmp/cmems-api/docker
   sh deploy.sh master
-  cd ../..
+  cd ../../..
   rm -rf tmp
 }
 
