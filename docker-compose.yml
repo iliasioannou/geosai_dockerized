@@ -81,7 +81,7 @@ services:
       - MYSQL_USER=cmems
       - MYSQL_PASSWORD=cmems
       - MYSQL_ROOT_PASSWORD=cmems
-  postgres-cmems:
+  postgres-eosai:
     image: postgres:9.6
     environment:
       - POSTGRES_USER=cmems
