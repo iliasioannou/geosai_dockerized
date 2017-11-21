@@ -2,15 +2,15 @@ version: '3'
 services:
   geoserver:
     image: kartoza/geoserver
-    container_name: cmems_geoserver
+    container_name: eosai_geoserver
     volumes:
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
     expose:
       - 9090
   processors:
-    image: planetek/cmems_processors:master
-    container_name: cmems_processors
+    image: planetek/eosai_processors:master
+    container_name: eosai_processors
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
       - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
@@ -20,7 +20,7 @@ services:
     image: postgres
     environment:
       - POSTGRES_PASSWORD=geonetwork
-    container_name: cmems_postgres
+    container_name: eosai_postgres
     volumes:
       - ./shared_data/postgres/datavolume:/opt/data-volume
       - ./shared_data/postgres/data:/var/lib/postgresql/data
@@ -29,10 +29,10 @@ services:
     environment:
       - POSTGRES_DB_USERNAME=postgres
       - POSTGRES_DB_PASSWORD=geonetwork
-    container_name: cmems_geonetwork
+    container_name: eosai_geonetwork
   esb:
-    image: planetek/cmems_esb:master
-    container_name: cmems_esb
+    image: planetek/eosai_esb:master
+    container_name: eosai_esb
     volumes:
       - ./shared_data/geoserver/data:/root
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
@@ -41,11 +41,11 @@ services:
     expose:
       - 9190
   gui:
-    image: planetek/cmems-gui:master
-    container_name: cmems_gui
+    image: planetek/eosai-gui:master
+    container_name: eosai_gui
   mysql_activiti:
     image: mysql
-    container_name: cmems_mysql_activiti
+    container_name: eosai_mysql_activiti
     environment:
       - MYSQL_ROOT_PASSWORD=cmems
       - MYSQL_DATABASE=cmems_activiti
@@ -54,8 +54,8 @@ services:
     volumes:
       - ./shared_data/mysql:/var/lib/mysql 
   activiti:
-    container_name: cmems_activiti
-    image: planetek/cmems_activiti:master
+    container_name: eosai_activiti
+    image: planetek/eosai_activiti:master
     expose:
       - 9085
     environment:
@@ -65,15 +65,15 @@ services:
       - DB_USER=activiti 
       - DB_PASS=pkz_029activiti
   manager_od:
-    container_name: cmems_manager_od
-    image: planetek/cmems_manager_od:master
+    container_name: eosai_manager_od
+    image: planetek/eosai_manager_od:master
     expose:
       - 8080
     volumes:
       - ./shared_data:/shared
   mysql_manager:
     image: mysql
-    container_name: cmems_manager_mysql
+    container_name: eosai_manager_mysql
     expose:
       - 3306
     environment:
@@ -87,15 +87,15 @@ services:
       - POSTGRES_USER=cmems
       - POSTGRES_PASSWORD=cmems
       - POSTGRES_DB=CMEMS_DB
-    container_name: cmems_db_api
+    container_name: eosai_db_api
     volumes:
       - ./init_cmems.sql:/docker-entrypoint-initdb.d/init.sql
       - ./shared_data/postgres-cmems/data:/var/lib/postgresql/data
   api:
-    image: planetek/cmems_api:master
-    container_name: cmems_api
+    image: planetek/eosai_api:master
+    container_name: eosai_api
   wordpress:
-    container_name: cmems_wordpress
+    container_name: eosai_wordpress
     image: wordpress
     expose:
       - 80
@@ -110,10 +110,10 @@ services:
       - wordpress_data:/home/cmems/data:rw
     ports:
       - "5427:22"
-    container_name: cmems_sftp
-    command: cmems:jVtwVN8AJHfnsX2B9Jya:1001
+    container_name: eosai_sftp
+    command: eosai:jVtwVN8AJHfnsX2B9Jya:1001
   mysql:
-    container_name: cmems_wordpress_mysql
+    container_name: eosai_wordpress_mysql
     image: mariadb
     environment:
       - MYSQL_USER=cmems
@@ -123,7 +123,7 @@ services:
     volumes:
       - ./shared_data/mysql-wordpress:/var/lib/mysql
   portainer:
-    container_name: cmems_portainer
+    container_name: eosai_portainer
     image: portainer/portainer
     volumes:
       -  /var/run/docker.sock:/var/run/docker.sock
@@ -133,8 +133,8 @@ services:
   proxy:
     ports:
       - 80:80
-    image: planetek/cmems_proxy:base
-    container_name: cmems_proxy
+    image: planetek/eosai_proxy:base
+    container_name: eosai_proxy
     volumes:
       - ./shared_data/download:/var/www/download
   backup:
@@ -150,10 +150,10 @@ services:
       - MYSQL_ENV_MYSQL_USER=cmems
       - MYSQL_ENV_MYSQL_PASSWORD=SFzDmSz43aU0xhJ
       - MYSQL_PORT_3306_TCP_PORT=3306
-    container_name: cmems_wordpress_backup
+    container_name: eosai_wordpress_backup
 networks:
   default:
     external:
-      name: cmems
+      name: eosai
 volumes:
   wordpress_data:
