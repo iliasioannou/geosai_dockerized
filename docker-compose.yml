@@ -94,42 +94,6 @@ services:
   api:
     image: planetek/eosai_api:master
     container_name: eosai_api
-  wordpress:
-    container_name: eosai_wordpress
-    image: wordpress
-    expose:
-      - 80
-    environment:
-      - WORDPRESS_DB_PASSWORD=SFzDmSz43aU0xhJ
-      - WORDPRESS_DB_USER=cmems
-    volumes:
-      - wordpress_data:/var/www/html
-  sftp:
-    image: atmoz/sftp
-    volumes:
-      - wordpress_data:/home/cmems/data:rw
-    ports:
-      - "5427:22"
-    container_name: eosai_sftp
-    command: eosai:jVtwVN8AJHfnsX2B9Jya:1001
-  mysql:
-    container_name: eosai_wordpress_mysql
-    image: mariadb
-    environment:
-      - MYSQL_USER=cmems
-      - MYSQL_PASSWORD=SFzDmSz43aU0xhJ
-      - MYSQL_ROOT_PASSWORD=lubHiOgCnFsRCT7
-      - MYSQL_DATABASE=wordpress
-    volumes:
-      - ./shared_data/mysql-wordpress:/var/lib/mysql
-  portainer:
-    container_name: eosai_portainer
-    image: portainer/portainer
-    volumes:
-      -  /var/run/docker.sock:/var/run/docker.sock
-      - ./shared_data/portainer:/data
-    expose:
-      -  9000
   proxy:
     ports:
       - 80:80
@@ -137,20 +101,6 @@ services:
     container_name: eosai_proxy
     volumes:
       - ./shared_data/download:/var/www/download
-  backup:
-    image: aveltens/wordpress-backup
-    restart: always
-    volumes:
-      - ./shared_data/backups:/backups
-      - wordpress_data:/var/www/html
-    depends_on:
-      - mysql
-    environment:
-      - MYSQL_ENV_MYSQL_DATABASE=wordpress
-      - MYSQL_ENV_MYSQL_USER=cmems
-      - MYSQL_ENV_MYSQL_PASSWORD=SFzDmSz43aU0xhJ
-      - MYSQL_PORT_3306_TCP_PORT=3306
-    container_name: eosai_wordpress_backup
 networks:
   default:
     external:
