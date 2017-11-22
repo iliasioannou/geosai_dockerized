@@ -105,5 +105,3 @@ networks:
   default:
     external:
       name: eosai
-volumes:
-  wordpress_data:
