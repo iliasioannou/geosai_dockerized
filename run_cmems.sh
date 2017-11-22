@@ -106,7 +106,7 @@ function build_proxy {
 
 clean
 build_eosai_processors
-build_eosai_gui
+# build_eosai_gui
 build_eosai_geoserver
 # build_eosai_geonetwork
 build_eosai_esb
