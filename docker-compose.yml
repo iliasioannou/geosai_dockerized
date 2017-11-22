@@ -84,9 +84,9 @@ services:
   postgres-eosai:
     image: postgres:9.6
     environment:
-      - POSTGRES_USER=cmems
-      - POSTGRES_PASSWORD=cmems
-      - POSTGRES_DB=CMEMS_DB
+      - POSTGRES_USER=eosai
+      - POSTGRES_PASSWORD=eosai
+      - POSTGRES_DB=EOSAI_DB
     container_name: eosai_db_api
     volumes:
       - ./init_cmems.sql:/docker-entrypoint-initdb.d/init.sql
