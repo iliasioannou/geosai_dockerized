@@ -16,7 +16,7 @@ function build_eosai_esb {
   if [ ! -d "shared_data/download" ]; then
     mkdir shared_data/download
   fi
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_ESB tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_ESB tmp
   cd tmp/ESB/docker
   sh build.sh master
   cd ../../..
@@ -25,7 +25,7 @@ function build_eosai_esb {
 
 function build_eosai_geoserver {
   printf "${RED}Preparing geoserver instance${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_MapServices tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_MapServices tmp
   mkdir config
   cp tmp/config/users.xml config
   cd tmp
@@ -42,7 +42,7 @@ function build_eosai_geoserver {
 
 function build_eosai_processors {
   printf "${RED}Building eosai_processors${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Processori tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Processori tmp
   cd tmp/Processors/docker
   sh build.sh master
   cd ../../..
@@ -52,7 +52,7 @@ function build_eosai_processors {
 
 function build_eosai_geonetwork {
   printf "${RED}Preparing geonetwork${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_connettore_catalogo tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_connettore_catalogo tmp
   cd tmp
   if [ ! -d "../shared_data/postgres/datavolume" ]; then
     mv datavolume ../shared_data/postgres
@@ -63,7 +63,7 @@ function build_eosai_geonetwork {
 
 function build_eosai_gui {
   printf "${RED}Building eosai_gui${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Web_App tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Web_App tmp
   cd tmp/eosai-gui/docker
   sh deploy.sh master
   cd ../../..
@@ -72,7 +72,7 @@ function build_eosai_gui {
 
 function build_eosai_activiti {
   printf "${RED}Building eosai_activiti${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_WFE  tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_WFE  tmp
   cd tmp/docker
   sh build.sh master
   cd ../..
@@ -81,7 +81,7 @@ function build_eosai_activiti {
 
 function build_eosai_manager {
   printf "${RED}Building eosai_manager${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Manager_OD_Request  tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Manager_OD_Request  tmp
   cd tmp/docker
   sh build.sh master
   cd ../..
@@ -90,7 +90,7 @@ function build_eosai_manager {
 
 function build_eosai_api {
   printf "${RED}Building eosai_api${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Api_Rest  tmp
+  git clone -b master https://teamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Api_Rest  tmp
   cd tmp/eosai-api/docker
   sh deploy.sh master
   cd ../../..
