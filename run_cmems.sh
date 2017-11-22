@@ -90,11 +90,7 @@ function build_eosai_manager {
 
 function build_eosai_api {
   printf "${RED}Building eosai_api${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Api_Rest  tmp
-  cd tmp/eosai-api/docker
-  sh deploy.sh master
-  cd ../../..
-  rm -rf tmp
+  docker pull dockerhub.planetek.it/pkh111_eosai_api:master
 }
 
 function build_proxy {
