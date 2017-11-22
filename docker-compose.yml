@@ -24,12 +24,12 @@ services:
     volumes:
       - ./shared_data/postgres/datavolume:/opt/data-volume
       - ./shared_data/postgres/data:/var/lib/postgresql/data
-  # geonetwork:
-    #image: geonetwork:postgres
-    #environment:
-     # - POSTGRES_DB_USERNAME=postgres
-      #- POSTGRES_DB_PASSWORD=geonetwork
-    #container_name: eosai_geonetwork
+  geonetwork:
+    image: geonetwork:postgres
+    environment:
+      - POSTGRES_DB_USERNAME=postgres
+      - POSTGRES_DB_PASSWORD=geonetwork
+    container_name: eosai_geonetwork
   esb:
     image: planetek/eosai_esb:master
     container_name: eosai_esb
