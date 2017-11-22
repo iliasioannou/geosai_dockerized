@@ -92,7 +92,7 @@ services:
       - ./init_cmems.sql:/docker-entrypoint-initdb.d/init.sql
       - ./shared_data/postgres-cmems/data:/var/lib/postgresql/data
   api:
-    image: planetek/eosai_api:master
+    image: dockerhub.planetek.it/pkh111_eosai_api:master
     container_name: eosai_api
   proxy:
     ports:
