@@ -6,6 +6,7 @@ services:
     volumes:
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
+      - ./shared_data/geoserver/setenv.sh:/usr/local/tomcat/bin/setenv.sh
     expose:
       - 9090
   processors:
