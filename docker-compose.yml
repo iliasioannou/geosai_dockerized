@@ -48,9 +48,9 @@ services:
     container_name: eosai_mysql_activiti
     environment:
       - MYSQL_ROOT_PASSWORD=cmems
-      - MYSQL_DATABASE=cmems_activiti
+      - MYSQL_DATABASE=eosai_activiti
       - MYSQL_USER=activiti
-      - MYSQL_PASSWORD=pkz_029activiti
+      - MYSQL_PASSWORD=pkh_111activiti
     volumes:
       - ./shared_data/mysql:/var/lib/mysql 
   activiti:
@@ -61,9 +61,9 @@ services:
     environment:
       - DB_TYPE=mysql  
       - DB_HOST=mysql_activiti
-      - DB_NAME=cmems_activiti
+      - DB_NAME=eosai_activiti
       - DB_USER=activiti 
-      - DB_PASS=pkz_029activiti
+      - DB_PASS=pkh_111activiti
   manager_od:
     container_name: eosai_manager_od
     image: planetek/eosai_manager_od:master
