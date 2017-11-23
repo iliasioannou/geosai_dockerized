@@ -10,6 +10,20 @@ Or just type:
 
 To speed the build process up, you could comment out some build functions.
 
+
+## About geoserver setup
+
+To replicate the infrastructer, you need to get Geoserver ready placing its own data in the mounted folder.
+So basically:
+   
+   - start geoserver with a mounter folder empty
+   - export geoserver data dir
+   - stop geoserver
+   - place the exported folder in the geoserver data dir
+   - export output data from C5_Output_dir directory and place in *shared_data* folder
+   - restart geoserver
+   - change whatever you need using geoserver web interface
+   
 ## About wordpress backup
 
 Wordpress site has been exposed to 80.
