@@ -47,7 +47,7 @@ services:
     image: mysql
     container_name: eosai_mysql_activiti
     environment:
-      - MYSQL_ROOT_PASSWORD=cmems
+      - MYSQL_ROOT_PASSWORD=eosai
       - MYSQL_DATABASE=eosai_activiti
       - MYSQL_USER=activiti
       - MYSQL_PASSWORD=pkh_111activiti
@@ -77,10 +77,10 @@ services:
     expose:
       - 3306
     environment:
-      - MYSQL_DATABASE=cmems_manager
-      - MYSQL_USER=cmems
-      - MYSQL_PASSWORD=cmems
-      - MYSQL_ROOT_PASSWORD=cmems
+      - MYSQL_DATABASE=eosai_manager
+      - MYSQL_USER=eosai
+      - MYSQL_PASSWORD=eosai
+      - MYSQL_ROOT_PASSWORD=eosai
   postgres-eosai:
     image: postgres:9.6
     environment:
