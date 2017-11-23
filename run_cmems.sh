@@ -114,10 +114,10 @@ docker-compose down
 printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql_activiti mysql_manager
 printf "${RED}Going to sleep${NC}\n"
+sleep 100
+docker exec -it eosai_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
+docker-compose up -d
 sleep 10
-# docker exec -it eosai_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
-# docker-compose up -d
-# sleep 10
 # docker exec eosai_activiti bash -c '/src/load.sh'
 # docker exec -t -i eosai_geoserver bash -c "sed -i -- 's/port=\"8080\"/port=\"9090\"/g' /usr/local/tomcat/conf/server.xml"
 # docker exec -t -i eosai_activiti  bash -c "sed -i -- 's/port=\"8080\"/port=\"9085\"/g' /opt/tomcat/conf/server.xml"
