@@ -60,7 +60,7 @@ services:
       - 9085
     environment:
       - DB_TYPE=mysql  
-      - DB_HOST=cmems_mysql_activiti
+      - DB_HOST=mysql_activiti
       - DB_NAME=cmems_activiti
       - DB_USER=activiti 
       - DB_PASS=pkz_029activiti
