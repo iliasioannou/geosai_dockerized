@@ -102,6 +102,7 @@ services:
     container_name: eosai_proxy
     volumes:
       - ./shared_data/download:/var/www/download
+    restart: unless-stopped
 networks:
   default:
     external:
