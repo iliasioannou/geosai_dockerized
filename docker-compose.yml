@@ -67,7 +67,7 @@ services:
       - DB_PASS=pkh_111activiti
   manager_od:
     container_name: eosai_manager_od
-    image: planetek/eosai_manager_od:master
+    image: dockerhub.planetek.it/pkh111_eosai_manager_od:master
     expose:
       - 8080
     volumes:
