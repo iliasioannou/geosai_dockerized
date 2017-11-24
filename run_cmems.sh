@@ -42,11 +42,7 @@ function build_eosai_geoserver {
 
 function build_eosai_processors {
   printf "${RED}Building eosai_processors${NC}\n"
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Processori tmp
-  cd tmp/Processors/docker
-  sh build.sh master
-  cd ../../..
-  rm -rf tmp
+  docker pull dockerhub.planetek.it/pkz029_cmems_processors:master
 }
 
 
