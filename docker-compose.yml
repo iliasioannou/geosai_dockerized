@@ -10,7 +10,7 @@ services:
     expose:
       - 9090
   processors:
-    image: planetek/eosai_processors:master
+    image: dockerhub.planetek.it/pkz029_cmems_processors:master
     container_name: eosai_processors
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
