@@ -53,7 +53,7 @@ services:
       - MYSQL_USER=activiti
       - MYSQL_PASSWORD=pkh_111activiti
     volumes:
-      - ./shared_data/mysql:/var/lib/mysql 
+      - ./shared_data/mysql_activiti:/var/lib/mysql 
   activiti:
     container_name: eosai_activiti
     image: planetek/eosai_activiti:master
