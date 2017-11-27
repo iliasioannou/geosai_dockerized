@@ -38,6 +38,7 @@ services:
       - ./shared_data/geoserver/data:/root
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
       - ./shared_data:/shared
+      - ./datavolume:/opt/data-volume
       - ./shared_data/.m2:/root/.m2
     expose:
       - 9190
