@@ -23,7 +23,7 @@ services:
       - POSTGRES_PASSWORD=geonetwork
     container_name: eosai_postgres
     volumes:
-      - ./shared_data/postgres/datavolume:/opt/data-volume
+      - ./shared_data/postgres:/opt/data-volume
       - ./shared_data/postgres/data:/var/lib/postgresql/data
   geonetwork:
     image: geonetwork:postgres
