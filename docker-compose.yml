@@ -8,6 +8,7 @@ services:
       - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
     expose:
       - 9091
+    restart: unless-stopped
   geoserver:
     image: kartoza/geoserver
     container_name: eosai_geoserver
@@ -17,6 +18,7 @@ services:
       - ./shared_data/geoserver/setenv.sh:/usr/local/tomcat/bin/setenv.sh
     expose:
       - 9090
+    restart: unless-stopped
   postgres:
     image: postgres
     environment:
@@ -25,12 +27,14 @@ services:
     volumes:
       - ./shared_data/postgres:/opt/data-volume
       - ./shared_data/postgres/data:/var/lib/postgresql/data
+    restart: unless-stopped
   geonetwork:
     image: geonetwork:postgres
     environment:
       - POSTGRES_DB_USERNAME=postgres
       - POSTGRES_DB_PASSWORD=geonetwork
     container_name: eosai_geonetwork
+    restart: unless-stopped
   esb:
     image: planetek/eosai_esb:master
     container_name: eosai_esb
@@ -42,6 +46,7 @@ services:
       - ./shared_data/.m2:/root/.m2
     expose:
       - 9190
+    restart: unless-stopped
   mysql_activiti:
     image: mysql
     container_name: eosai_mysql_activiti
@@ -52,6 +57,7 @@ services:
       - MYSQL_PASSWORD=pkh_111activiti
     volumes:
       - ./shared_data/mysql_activiti:/var/lib/mysql 
+    restart: unless-stopped
   activiti:
     container_name: eosai_activiti
     image: planetek/eosai_activiti:master
@@ -63,6 +69,7 @@ services:
       - DB_NAME=eosai_activiti
       - DB_USER=activiti 
       - DB_PASS=pkh_111activiti
+    restart: unless-stopped
   manager_od:
     container_name: eosai_manager_od
     image: dockerhub.planetek.it/pkh111_eosai_manager_od:master
@@ -70,6 +77,7 @@ services:
       - 8080
     volumes:
       - ./shared_data:/shared
+    restart: unless-stopped
   mysql_manager:
     image: mysql
     container_name: eosai_manager_mysql
@@ -80,6 +88,7 @@ services:
       - MYSQL_USER=eosai
       - MYSQL_PASSWORD=eosai
       - MYSQL_ROOT_PASSWORD=eosai
+    restart: unless-stopped
   postgres-eosai:
     image: postgres:9.6
     environment:
@@ -90,6 +99,7 @@ services:
     volumes:
       - ./init_eosai.sql:/docker-entrypoint-initdb.d/init.sql
       - ./shared_data/postgres-eosai/data:/var/lib/postgresql/data
+    restart: unless-stopped
   api:
     image: dockerhub.planetek.it/pkh111_eosai_api:master
     container_name: eosai_api
