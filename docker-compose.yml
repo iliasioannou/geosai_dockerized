@@ -1,5 +1,13 @@
 version: '3'
 services:
+  processors:
+    image: dockerhub.planetek.it/pkz029_cmems_processors:master
+    container_name: eosai_processors
+    volumes:
+      - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
+      - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
+    expose:
+      - 9091
   geoserver:
     image: kartoza/geoserver
     container_name: eosai_geoserver
@@ -9,14 +17,6 @@ services:
       - ./shared_data/geoserver/setenv.sh:/usr/local/tomcat/bin/setenv.sh
     expose:
       - 9090
-  processors:
-    image: dockerhub.planetek.it/pkz029_cmems_processors:master
-    container_name: eosai_processors
-    volumes:
-      - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
-      - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
-    expose:
-      - 9091
   postgres:
     image: postgres
     environment:
@@ -42,9 +42,6 @@ services:
       - ./shared_data/.m2:/root/.m2
     expose:
       - 9190
-  gui:
-    image: planetek/eosai-gui:master
-    container_name: eosai_gui
   mysql_activiti:
     image: mysql
     container_name: eosai_mysql_activiti
@@ -96,6 +93,9 @@ services:
   api:
     image: dockerhub.planetek.it/pkh111_eosai_api:master
     container_name: eosai_api
+  gui:
+    image: planetek/eosai-gui:master
+    container_name: eosai_gui
   proxy:
     ports:
       - 80:80
