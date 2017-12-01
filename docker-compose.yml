@@ -103,9 +103,11 @@ services:
   api:
     image: dockerhub.planetek.it/pkh111_eosai_api:master
     container_name: eosai_api
+    restart: unless-stopped
   gui:
     image: planetek/eosai-gui:master
     container_name: eosai_gui
+    restart: unless-stopped
   proxy:
     ports:
       - 80:80
