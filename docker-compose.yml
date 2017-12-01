@@ -114,11 +114,11 @@ services:
   api:
     image: dockerhub.planetek.it/pkh111_eosai_api:master
     container_name: eosai_api
-
+    restart: unless-stopped
   gui:
     image: planetek/eosai-gui:master
     container_name: eosai_gui
-
+    restart: unless-stopped
   proxy:
     ports:
       - 80:80
@@ -127,7 +127,6 @@ services:
     volumes:
       - ./shared_data/download:/var/www/download
     restart: unless-stopped
-
   portainer:
     container_name: eosai_portainer
     image: portainer/portainer
@@ -137,7 +136,6 @@ services:
     expose:
       -  9000
     restart: unless-stopped
-
 networks:
   default:
     external:
