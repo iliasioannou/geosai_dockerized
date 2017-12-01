@@ -2,7 +2,7 @@ version: '3'
 services:
 
   processors:
-    image: planetek/eosai_processors:master
+    image: dockerhub.planetek.it/pkh111_eosai_processors:master
     container_name: eosai_processors
     volumes:
       - ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir

@@ -42,13 +42,13 @@ function build_eosai_geoserver {
 
 function build_eosai_processors {
   printf "${RED}Building eosai_processors${NC}\n"
-  // docker pull dockerhub.planetek.it/pkz029_cmems_processors:master
-  git clone -b master https://tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Processori tmp
-  cd tmp
-  if [ ! -d "/Processors/docker" ]; then
-     sh ./build.sh master
-  fi
-  cd ..
+  docker pull dockerhub.planetek.it/pkh111_eosai_processors:master
+  // git clone -b master https://tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_Processori tmp
+  // cd tmp
+  // cd /Processors/docker
+  // sh ./build.sh master
+  // cd ../../..
+  // rm -rf tmp
 }
 
 
