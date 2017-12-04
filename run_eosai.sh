@@ -110,10 +110,10 @@ clean
 #build_proxy
 docker-compose down
 printf "${RED}Running compose${NC}\n"
-#docker-compose up -d postgres mysql_activiti mysql_manager
+docker-compose up -d postgres mysql_activiti mysql_manager
 printf "${RED}Going to sleep${NC}\n"
-sleep 10
-#docker exec -it eosai_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
+sleep 100
+docker exec -it eosai_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
 docker-compose up -d
 sleep 10
-#docker exec eosai_activiti bash -c '/src/load.sh'
+docker exec eosai_activiti bash -c '/src/load.sh'
