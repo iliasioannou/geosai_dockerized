@@ -16,11 +16,7 @@ function build_eosai_esb {
   if [ ! -d "shared_data/download" ]; then
     mkdir shared_data/download
   fi
-  git clone -b master https://TeamEreticoTfs:hIEMK-i=d@tfs.planetek.it/Planetek%20Hellas/pkh111_EOSAI/_git/pkh111_EOSAI_ESB tmp
-  cd tmp/ESB/docker
-  sh build.sh master
-  cd ../../..
-  rm -rf tmp
+  docker pull dockerhub.planetek.it/pkh111_eosai_esb:master
 }
 
 function build_eosai_geoserver {
