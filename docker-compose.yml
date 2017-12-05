@@ -36,7 +36,7 @@ services:
     container_name: eosai_geonetwork
     restart: unless-stopped
   esb:
-    image: dockerhub.planetek.it/eosai_esb:master
+    image: dockerhub.planetek.it/pkh111_eosai_esb:master
     container_name: eosai_esb
     volumes:
       - ./shared_data/geoserver/data:/root
