@@ -104,8 +104,6 @@ clean
 #build_eosai_manager
 #build_eosai_api
 #build_proxy
-docker-compose down
-printf "${RED}Running compose${NC}\n"
 docker-compose up -d postgres mysql_activiti mysql_manager
 printf "${RED}Going to sleep${NC}\n"
 sleep 100
