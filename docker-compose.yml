@@ -105,7 +105,7 @@ services:
     container_name: eosai_api
     restart: unless-stopped
   gui:
-    image: planetek/eosai-gui:master
+    image: dockerhub.planetek.it/pkh111_eosai-gui:master
     container_name: eosai_gui
     restart: unless-stopped
   proxy:
