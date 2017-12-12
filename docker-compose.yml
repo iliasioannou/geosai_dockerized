@@ -20,6 +20,8 @@ services:
       - ./shared_data/geoserver/setenv.sh:/usr/local/tomcat/bin/setenv.sh
     expose:
       - 9090
+    ports:
+      - 8999:8080
     restart: unless-stopped
 
   postgres:
@@ -33,13 +35,14 @@ services:
     restart: unless-stopped
 
   geonetwork:
-    image: geonetwork:postgres
+    image: geonetwork:3.2.1-postgres
     environment:
       - POSTGRES_DB_USERNAME=postgres
       - POSTGRES_DB_PASSWORD=geonetwork
     container_name: eosai_geonetwork
+    ports:
+      - 8998:8080
     restart: unless-stopped
-
   esb:
     image: dockerhub.planetek.it/pkh111_eosai_esb:master
     container_name: eosai_esb
@@ -116,7 +119,7 @@ services:
     container_name: eosai_api
     restart: unless-stopped
   gui:
-    image: planetek/eosai-gui:master
+    image: dockerhub.planetek.it/pkh111_eosai-gui:master
     container_name: eosai_gui
     restart: unless-stopped
   proxy:

@@ -98,7 +98,7 @@ clean
 #build_eosai_processors
 #build_eosai_gui
 #build_eosai_geoserver
-#build_eosai_geonetwork
+build_eosai_geonetwork
 #build_eosai_esb
 #build_eosai_activiti
 #build_eosai_manager
@@ -106,8 +106,8 @@ clean
 #build_proxy
 docker-compose up -d postgres mysql_activiti mysql_manager
 printf "${RED}Going to sleep${NC}\n"
-sleep 100
-docker exec -it eosai_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
-docker-compose up -d
 sleep 10
-docker exec eosai_activiti bash -c '/src/load.sh'
+#docker exec -it eosai_postgres psql -U postgres geonetwork -a -f opt/data-volume/db.sql
+docker-compose up -d
+#sleep 10
+#docker exec eosai_activiti bash -c '/src/load.sh'
