@@ -16,7 +16,8 @@ services:
     container_name: eosai_geoserver
     volumes:
       - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
-      - ./shared_data:/shared
+      - ./shared_data/geoserver/data/config:/opt/geoserver/data_dir/eosai/config
+      - ./shared_data/geoserver/data/raster:/opt/geoserver/data_dir/eosai/raster
       - ./shared_data/geoserver/setenv.sh:/usr/local/tomcat/bin/setenv.sh
     expose:
       - 9090
@@ -95,6 +96,8 @@ services:
     container_name: eosai_manager_mysql
     expose:
       - 3306
+    ports:
+      - 3307:3306
     environment:
       - MYSQL_DATABASE=eosai_manager
       - MYSQL_USER=eosai
