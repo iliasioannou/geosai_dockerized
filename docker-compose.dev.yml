@@ -1,0 +1,149 @@
+version: '3'
+services:
+
+  processors:
+    image: dockerhub.planetek.it/pkh111_eosai_processors:develop
+    container_name: eosai_processors
+    volumes:
+      - ./shared_data/geoserver/data/raster:/src/Processors/server/processors/C5_OutputDir
+      #- ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
+      - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
+    expose:
+      - 9091
+    restart: unless-stopped
+
+  geoserver:
+    image: kartoza/geoserver
+    container_name: eosai_geoserver
+    volumes:
+      - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
+      - ./shared_data/geoserver/data/config:/opt/geoserver/data_dir/eosai/config
+      - ./shared_data/geoserver/data/raster:/opt/geoserver/data_dir/eosai/raster
+      - ./shared_data/geoserver/setenv.sh:/usr/local/tomcat/bin/setenv.sh
+    expose:
+      - 9090
+    ports:
+      - 8999:8080
+    restart: unless-stopped
+
+  postgres:
+    image: postgres
+    environment:
+      - POSTGRES_PASSWORD=geonetwork
+    container_name: eosai_postgres
+    volumes:
+      - ./shared_data/postgres:/opt/data-volume
+      - ./shared_data/postgres/data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  geonetwork:
+    image: geonetwork:3.2.1-postgres
+    environment:
+      - POSTGRES_DB_USERNAME=postgres
+      - POSTGRES_DB_PASSWORD=geonetwork
+    container_name: eosai_geonetwork
+    ports:
+      - 8998:8080
+    restart: unless-stopped
+  esb:
+    image: dockerhub.planetek.it/pkh111_eosai_esb:develop
+    container_name: eosai_esb
+    volumes:
+      - ./shared_data/geoserver/data:/root
+      - ./shared_data/geoserver/geoserver_data_dir:/opt/geoserver/data_dir
+      - ./shared_data:/shared
+      - ./datavolume:/opt/data-volume
+      - ./shared_data/.m2:/root/.m2
+    expose:
+      - 9190
+    restart: unless-stopped
+
+  mysql_activiti:
+    image: mysql
+    container_name: eosai_mysql_activiti
+    environment:
+      - MYSQL_ROOT_PASSWORD=eosai
+      - MYSQL_DATABASE=eosai_activiti
+      - MYSQL_USER=activiti
+      - MYSQL_PASSWORD=pkh_111activiti
+    volumes:
+      - ./shared_data/mysql_activiti:/var/lib/mysql 
+    restart: unless-stopped
+
+  activiti:
+    container_name: eosai_activiti
+    image: planetek/eosai_activiti:master
+    expose:
+      - 9085
+    environment:
+      - DB_TYPE=mysql  
+      - DB_HOST=mysql_activiti
+      - DB_NAME=eosai_activiti
+      - DB_USER=activiti 
+      - DB_PASS=pkh_111activiti
+    restart: unless-stopped
+
+  manager_od:
+    container_name: eosai_manager_od
+    image: dockerhub.planetek.it/pkh111_eosai_manager_od:master
+    expose:
+      - 8080
+    volumes:
+      - ./shared_data:/shared
+    restart: unless-stopped
+
+  mysql_manager:
+    image: mysql
+    container_name: eosai_manager_mysql
+    expose:
+      - 3306
+    ports:
+      - 3307:3306
+    environment:
+      - MYSQL_DATABASE=eosai_manager
+      - MYSQL_USER=eosai
+      - MYSQL_PASSWORD=eosai
+      - MYSQL_ROOT_PASSWORD=eosai
+    restart: unless-stopped
+
+  postgres-eosai:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=eosai
+      - POSTGRES_PASSWORD=eosai
+      - POSTGRES_DB=EOSAI_DB
+    container_name: eosai_db_api
+    volumes:
+      - ./init_eosai.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./shared_data/postgres-eosai/data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  api:
+    image: dockerhub.planetek.it/pkh111_eosai_api:master
+    container_name: eosai_api
+    restart: unless-stopped
+  gui:
+    image: dockerhub.planetek.it/pkh111_eosai-gui:develop
+    container_name: eosai_gui
+    restart: unless-stopped
+  proxy:
+    ports:
+      - 80:80
+    image: planetek/eosai_proxy:base
+    container_name: eosai_proxy
+    volumes:
+      - ./shared_data/download:/var/www/download
+    restart: unless-stopped
+  portainer:
+    container_name: eosai_portainer
+    image: portainer/portainer
+    volumes:
+      -  /var/run/docker.sock:/var/run/docker.sock
+      - ./shared_data/portainer:/data
+    expose:
+      -  9000
+    restart: unless-stopped
+networks:
+  default:
+    external:
+      name: eosai
