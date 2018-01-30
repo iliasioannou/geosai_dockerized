@@ -5,7 +5,7 @@ services:
     image: dockerhub.planetek.it/pkh111_eosai_processors:master
     container_name: eosai_processors
     volumes:
-      - ./shared_data/geoserver/data/raster:/src/Processors/server/processors/C5_OutputDir
+      - ./shared_data/geoserver/data/raster:/src/Processors/server/processors/C6_FinalOutput
       #- ./shared_data/C5_OutputDir:/src/Processors/server/processors/C5_OutputDir
       - ./shared_data/C3_Input:/src/Processors/server/processors/C3_Input
     expose:
