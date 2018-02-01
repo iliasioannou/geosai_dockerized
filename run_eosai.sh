@@ -111,3 +111,5 @@ docker exec -it eosai_postgres psql -U postgres geonetwork -a -f opt/data-volume
 docker-compose up -d 
 sleep 10
 docker exec eosai_activiti bash -c '/src/load.sh'
+sleep 10
+docker exec -it eosai_geoserver /mnt/copy_wps_jars.sh
