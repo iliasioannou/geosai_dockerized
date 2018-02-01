@@ -20,7 +20,7 @@ services:
       - ./shared_data/geoserver/data/config:/opt/geoserver/data_dir/eosai/config
       - ./shared_data/geoserver/data/raster:/opt/geoserver/data_dir/eosai/raster
       - ./shared_data/geoserver/setenv.sh:/usr/local/tomcat/bin/setenv.sh
-      - ./wps:/mnt
+      - ./shared_data/geoserver/wps:/mnt
     expose:
       - 9090
     ports:
