@@ -112,4 +112,4 @@ docker-compose up -d
 sleep 10
 docker exec eosai_activiti bash -c '/src/load.sh'
 sleep 10
-docker exec -it eosai_geoserver /mnt/copy_wps_jars.sh
+docker exec -it eosai_geoserver  bash -c "chmod +x /mnt/copy_wps_jars.sh; /mnt/copy_wps_jars.sh"
