@@ -73,7 +73,7 @@ services:
 
   activiti:
     container_name: eosai_activiti
-    image: planetek/eosai_activiti:master
+    image: planetek/eosai_activiti:develop
     expose:
       - 9085
     environment:
